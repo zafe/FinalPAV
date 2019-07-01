@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FinalpavdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdelantoSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Conductor_Id" Type="int" Nullable="false" />
+          <Property Name="Administrador_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdministradorSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CamionSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marca" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Modelo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Patente" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConductorSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DistanciaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DistanciaKm" Type="smallint" Nullable="false" />
+          <Property Name="Ingenio_Id" Type="int" Nullable="false" />
+          <Property Name="Finca_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FincaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngenioSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tarifa" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PrecioKm" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PagoSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Conductor_Id" Type="int" Nullable="false" />
+          <Property Name="Administrador_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Clave" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Administrador_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViajeSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Peso" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Fecha" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="Distancia_Id" Type="int" Nullable="false" />
+          <Property Name="Conductor_Id" Type="int" Nullable="false" />
+          <Property Name="Camion_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AdelantoConductor">
+          <End Role="ConductorSet" Type="Self.ConductorSet" Multiplicity="1" />
+          <End Role="AdelantoSet" Type="Self.AdelantoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConductorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdelantoSet">
+              <PropertyRef Name="Conductor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdministradorAdelanto">
+          <End Role="AdministradorSet" Type="Self.AdministradorSet" Multiplicity="1" />
+          <End Role="AdelantoSet" Type="Self.AdelantoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdministradorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdelantoSet">
+              <PropertyRef Name="Administrador_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdministradorPago">
+          <End Role="AdministradorSet" Type="Self.AdministradorSet" Multiplicity="1" />
+          <End Role="PagoSet" Type="Self.PagoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdministradorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PagoSet">
+              <PropertyRef Name="Administrador_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CamionViaje">
+          <End Role="CamionSet" Type="Self.CamionSet" Multiplicity="1" />
+          <End Role="ViajeSet" Type="Self.ViajeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CamionSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ViajeSet">
+              <PropertyRef Name="Camion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DistanciaViaje">
+          <End Role="DistanciaSet" Type="Self.DistanciaSet" Multiplicity="1" />
+          <End Role="ViajeSet" Type="Self.ViajeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DistanciaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ViajeSet">
+              <PropertyRef Name="Distancia_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FincaDistancia">
+          <End Role="FincaSet" Type="Self.FincaSet" Multiplicity="1" />
+          <End Role="DistanciaSet" Type="Self.DistanciaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FincaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DistanciaSet">
+              <PropertyRef Name="Finca_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngenioDistancia">
+          <End Role="IngenioSet" Type="Self.IngenioSet" Multiplicity="1" />
+          <End Role="DistanciaSet" Type="Self.DistanciaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngenioSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DistanciaSet">
+              <PropertyRef Name="Ingenio_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagoConductor">
+          <End Role="ConductorSet" Type="Self.ConductorSet" Multiplicity="1" />
+          <End Role="PagoSet" Type="Self.PagoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConductorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PagoSet">
+              <PropertyRef Name="Conductor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioAdministrador">
+          <End Role="AdministradorSet" Type="Self.AdministradorSet" Multiplicity="1" />
+          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdministradorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioSet">
+              <PropertyRef Name="Administrador_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ViajeConductor">
+          <End Role="ConductorSet" Type="Self.ConductorSet" Multiplicity="1" />
+          <End Role="ViajeSet" Type="Self.ViajeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConductorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ViajeSet">
+              <PropertyRef Name="Conductor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FinalpavdbModelStoreContainer">
+          <EntitySet Name="AdelantoSet" EntityType="Self.AdelantoSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdministradorSet" EntityType="Self.AdministradorSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CamionSet" EntityType="Self.CamionSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConductorSet" EntityType="Self.ConductorSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DistanciaSet" EntityType="Self.DistanciaSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FincaSet" EntityType="Self.FincaSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IngenioSet" EntityType="Self.IngenioSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PagoSet" EntityType="Self.PagoSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioSet" EntityType="Self.UsuarioSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViajeSet" EntityType="Self.ViajeSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AdelantoConductor" Association="Self.FK_AdelantoConductor">
+            <End Role="ConductorSet" EntitySet="ConductorSet" />
+            <End Role="AdelantoSet" EntitySet="AdelantoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdministradorAdelanto" Association="Self.FK_AdministradorAdelanto">
+            <End Role="AdministradorSet" EntitySet="AdministradorSet" />
+            <End Role="AdelantoSet" EntitySet="AdelantoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdministradorPago" Association="Self.FK_AdministradorPago">
+            <End Role="AdministradorSet" EntitySet="AdministradorSet" />
+            <End Role="PagoSet" EntitySet="PagoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CamionViaje" Association="Self.FK_CamionViaje">
+            <End Role="CamionSet" EntitySet="CamionSet" />
+            <End Role="ViajeSet" EntitySet="ViajeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DistanciaViaje" Association="Self.FK_DistanciaViaje">
+            <End Role="DistanciaSet" EntitySet="DistanciaSet" />
+            <End Role="ViajeSet" EntitySet="ViajeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FincaDistancia" Association="Self.FK_FincaDistancia">
+            <End Role="FincaSet" EntitySet="FincaSet" />
+            <End Role="DistanciaSet" EntitySet="DistanciaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngenioDistancia" Association="Self.FK_IngenioDistancia">
+            <End Role="IngenioSet" EntitySet="IngenioSet" />
+            <End Role="DistanciaSet" EntitySet="DistanciaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagoConductor" Association="Self.FK_PagoConductor">
+            <End Role="ConductorSet" EntitySet="ConductorSet" />
+            <End Role="PagoSet" EntitySet="PagoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioAdministrador" Association="Self.FK_UsuarioAdministrador">
+            <End Role="AdministradorSet" EntitySet="AdministradorSet" />
+            <End Role="UsuarioSet" EntitySet="UsuarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ViajeConductor" Association="Self.FK_ViajeConductor">
+            <End Role="ConductorSet" EntitySet="ConductorSet" />
+            <End Role="ViajeSet" EntitySet="ViajeSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FinalpavdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdelantoSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Monto" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Conductor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Administrador_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ConductorSet" Relationship="Self.FK_AdelantoConductor" FromRole="AdelantoSet" ToRole="ConductorSet" />
+          <NavigationProperty Name="AdministradorSet" Relationship="Self.FK_AdministradorAdelanto" FromRole="AdelantoSet" ToRole="AdministradorSet" />
+        </EntityType>
+        <EntityType Name="AdministradorSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AdelantoSet" Relationship="Self.FK_AdministradorAdelanto" FromRole="AdministradorSet" ToRole="AdelantoSet" />
+          <NavigationProperty Name="PagoSet" Relationship="Self.FK_AdministradorPago" FromRole="AdministradorSet" ToRole="PagoSet" />
+          <NavigationProperty Name="UsuarioSet" Relationship="Self.FK_UsuarioAdministrador" FromRole="AdministradorSet" ToRole="UsuarioSet" />
+        </EntityType>
+        <EntityType Name="CamionSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marca" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Modelo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ViajeSet" Relationship="Self.FK_CamionViaje" FromRole="CamionSet" ToRole="ViajeSet" />
+        </EntityType>
+        <EntityType Name="ConductorSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AdelantoSet" Relationship="Self.FK_AdelantoConductor" FromRole="ConductorSet" ToRole="AdelantoSet" />
+          <NavigationProperty Name="PagoSet" Relationship="Self.FK_PagoConductor" FromRole="ConductorSet" ToRole="PagoSet" />
+          <NavigationProperty Name="ViajeSet" Relationship="Self.FK_ViajeConductor" FromRole="ConductorSet" ToRole="ViajeSet" />
+        </EntityType>
+        <EntityType Name="DistanciaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DistanciaKm" Type="Int16" Nullable="false" />
+          <Property Name="Ingenio_Id" Type="Int32" Nullable="false" />
+          <Property Name="Finca_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ViajeSet" Relationship="Self.FK_DistanciaViaje" FromRole="DistanciaSet" ToRole="ViajeSet" />
+          <NavigationProperty Name="FincaSet" Relationship="Self.FK_FincaDistancia" FromRole="DistanciaSet" ToRole="FincaSet" />
+          <NavigationProperty Name="IngenioSet" Relationship="Self.FK_IngenioDistancia" FromRole="DistanciaSet" ToRole="IngenioSet" />
+        </EntityType>
+        <EntityType Name="FincaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DistanciaSet" Relationship="Self.FK_FincaDistancia" FromRole="FincaSet" ToRole="DistanciaSet" />
+        </EntityType>
+        <EntityType Name="IngenioSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tarifa" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PrecioKm" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="DistanciaSet" Relationship="Self.FK_IngenioDistancia" FromRole="IngenioSet" ToRole="DistanciaSet" />
+        </EntityType>
+        <EntityType Name="PagoSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Monto" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Conductor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Administrador_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AdministradorSet" Relationship="Self.FK_AdministradorPago" FromRole="PagoSet" ToRole="AdministradorSet" />
+          <NavigationProperty Name="ConductorSet" Relationship="Self.FK_PagoConductor" FromRole="PagoSet" ToRole="ConductorSet" />
+        </EntityType>
+        <EntityType Name="UsuarioSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Administrador_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AdministradorSet" Relationship="Self.FK_UsuarioAdministrador" FromRole="UsuarioSet" ToRole="AdministradorSet" />
+        </EntityType>
+        <EntityType Name="ViajeSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Peso" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Fecha" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="Distancia_Id" Type="Int32" Nullable="false" />
+          <Property Name="Conductor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Camion_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CamionSet" Relationship="Self.FK_CamionViaje" FromRole="ViajeSet" ToRole="CamionSet" />
+          <NavigationProperty Name="ConductorSet" Relationship="Self.FK_ViajeConductor" FromRole="ViajeSet" ToRole="ConductorSet" />
+          <NavigationProperty Name="DistanciaSet" Relationship="Self.FK_DistanciaViaje" FromRole="ViajeSet" ToRole="DistanciaSet" />
+        </EntityType>
+        <Association Name="FK_AdelantoConductor">
+          <End Role="ConductorSet" Type="Self.ConductorSet" Multiplicity="1" />
+          <End Role="AdelantoSet" Type="Self.AdelantoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConductorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdelantoSet">
+              <PropertyRef Name="Conductor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdministradorAdelanto">
+          <End Role="AdministradorSet" Type="Self.AdministradorSet" Multiplicity="1" />
+          <End Role="AdelantoSet" Type="Self.AdelantoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdministradorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdelantoSet">
+              <PropertyRef Name="Administrador_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdministradorPago">
+          <End Role="AdministradorSet" Type="Self.AdministradorSet" Multiplicity="1" />
+          <End Role="PagoSet" Type="Self.PagoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdministradorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PagoSet">
+              <PropertyRef Name="Administrador_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioAdministrador">
+          <End Role="AdministradorSet" Type="Self.AdministradorSet" Multiplicity="1" />
+          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdministradorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioSet">
+              <PropertyRef Name="Administrador_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CamionViaje">
+          <End Role="CamionSet" Type="Self.CamionSet" Multiplicity="1" />
+          <End Role="ViajeSet" Type="Self.ViajeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CamionSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ViajeSet">
+              <PropertyRef Name="Camion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagoConductor">
+          <End Role="ConductorSet" Type="Self.ConductorSet" Multiplicity="1" />
+          <End Role="PagoSet" Type="Self.PagoSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConductorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PagoSet">
+              <PropertyRef Name="Conductor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ViajeConductor">
+          <End Role="ConductorSet" Type="Self.ConductorSet" Multiplicity="1" />
+          <End Role="ViajeSet" Type="Self.ViajeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConductorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ViajeSet">
+              <PropertyRef Name="Conductor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DistanciaViaje">
+          <End Role="DistanciaSet" Type="Self.DistanciaSet" Multiplicity="1" />
+          <End Role="ViajeSet" Type="Self.ViajeSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DistanciaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ViajeSet">
+              <PropertyRef Name="Distancia_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FincaDistancia">
+          <End Role="FincaSet" Type="Self.FincaSet" Multiplicity="1" />
+          <End Role="DistanciaSet" Type="Self.DistanciaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FincaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DistanciaSet">
+              <PropertyRef Name="Finca_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IngenioDistancia">
+          <End Role="IngenioSet" Type="Self.IngenioSet" Multiplicity="1" />
+          <End Role="DistanciaSet" Type="Self.DistanciaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IngenioSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DistanciaSet">
+              <PropertyRef Name="Ingenio_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="finalpavdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdelantoSet" EntityType="Self.AdelantoSet" />
+          <EntitySet Name="AdministradorSet" EntityType="Self.AdministradorSet" />
+          <EntitySet Name="CamionSet" EntityType="Self.CamionSet" />
+          <EntitySet Name="ConductorSet" EntityType="Self.ConductorSet" />
+          <EntitySet Name="DistanciaSet" EntityType="Self.DistanciaSet" />
+          <EntitySet Name="FincaSet" EntityType="Self.FincaSet" />
+          <EntitySet Name="IngenioSet" EntityType="Self.IngenioSet" />
+          <EntitySet Name="PagoSet" EntityType="Self.PagoSet" />
+          <EntitySet Name="UsuarioSet" EntityType="Self.UsuarioSet" />
+          <EntitySet Name="ViajeSet" EntityType="Self.ViajeSet" />
+          <AssociationSet Name="FK_AdelantoConductor" Association="Self.FK_AdelantoConductor">
+            <End Role="ConductorSet" EntitySet="ConductorSet" />
+            <End Role="AdelantoSet" EntitySet="AdelantoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdministradorAdelanto" Association="Self.FK_AdministradorAdelanto">
+            <End Role="AdministradorSet" EntitySet="AdministradorSet" />
+            <End Role="AdelantoSet" EntitySet="AdelantoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdministradorPago" Association="Self.FK_AdministradorPago">
+            <End Role="AdministradorSet" EntitySet="AdministradorSet" />
+            <End Role="PagoSet" EntitySet="PagoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioAdministrador" Association="Self.FK_UsuarioAdministrador">
+            <End Role="AdministradorSet" EntitySet="AdministradorSet" />
+            <End Role="UsuarioSet" EntitySet="UsuarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CamionViaje" Association="Self.FK_CamionViaje">
+            <End Role="CamionSet" EntitySet="CamionSet" />
+            <End Role="ViajeSet" EntitySet="ViajeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagoConductor" Association="Self.FK_PagoConductor">
+            <End Role="ConductorSet" EntitySet="ConductorSet" />
+            <End Role="PagoSet" EntitySet="PagoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ViajeConductor" Association="Self.FK_ViajeConductor">
+            <End Role="ConductorSet" EntitySet="ConductorSet" />
+            <End Role="ViajeSet" EntitySet="ViajeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DistanciaViaje" Association="Self.FK_DistanciaViaje">
+            <End Role="DistanciaSet" EntitySet="DistanciaSet" />
+            <End Role="ViajeSet" EntitySet="ViajeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FincaDistancia" Association="Self.FK_FincaDistancia">
+            <End Role="FincaSet" EntitySet="FincaSet" />
+            <End Role="DistanciaSet" EntitySet="DistanciaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IngenioDistancia" Association="Self.FK_IngenioDistancia">
+            <End Role="IngenioSet" EntitySet="IngenioSet" />
+            <End Role="DistanciaSet" EntitySet="DistanciaSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FinalpavdbModelStoreContainer" CdmEntityContainer="finalpavdbEntities">
+          <EntitySetMapping Name="AdelantoSet">
+            <EntityTypeMapping TypeName="FinalpavdbModel.AdelantoSet">
+              <MappingFragment StoreEntitySet="AdelantoSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Conductor_Id" ColumnName="Conductor_Id" />
+                <ScalarProperty Name="Administrador_Id" ColumnName="Administrador_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdministradorSet">
+            <EntityTypeMapping TypeName="FinalpavdbModel.AdministradorSet">
+              <MappingFragment StoreEntitySet="AdministradorSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CamionSet">
+            <EntityTypeMapping TypeName="FinalpavdbModel.CamionSet">
+              <MappingFragment StoreEntitySet="CamionSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Patente" ColumnName="Patente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConductorSet">
+            <EntityTypeMapping TypeName="FinalpavdbModel.ConductorSet">
+              <MappingFragment StoreEntitySet="ConductorSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DistanciaSet">
+            <EntityTypeMapping TypeName="FinalpavdbModel.DistanciaSet">
+              <MappingFragment StoreEntitySet="DistanciaSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DistanciaKm" ColumnName="DistanciaKm" />
+                <ScalarProperty Name="Ingenio_Id" ColumnName="Ingenio_Id" />
+                <ScalarProperty Name="Finca_Id" ColumnName="Finca_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FincaSet">
+            <EntityTypeMapping TypeName="FinalpavdbModel.FincaSet">
+              <MappingFragment StoreEntitySet="FincaSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngenioSet">
+            <EntityTypeMapping TypeName="FinalpavdbModel.IngenioSet">
+              <MappingFragment StoreEntitySet="IngenioSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+                <ScalarProperty Name="PrecioKm" ColumnName="PrecioKm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PagoSet">
+            <EntityTypeMapping TypeName="FinalpavdbModel.PagoSet">
+              <MappingFragment StoreEntitySet="PagoSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Conductor_Id" ColumnName="Conductor_Id" />
+                <ScalarProperty Name="Administrador_Id" ColumnName="Administrador_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioSet">
+            <EntityTypeMapping TypeName="FinalpavdbModel.UsuarioSet">
+              <MappingFragment StoreEntitySet="UsuarioSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Administrador_Id" ColumnName="Administrador_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViajeSet">
+            <EntityTypeMapping TypeName="FinalpavdbModel.ViajeSet">
+              <MappingFragment StoreEntitySet="ViajeSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Distancia_Id" ColumnName="Distancia_Id" />
+                <ScalarProperty Name="Conductor_Id" ColumnName="Conductor_Id" />
+                <ScalarProperty Name="Camion_Id" ColumnName="Camion_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

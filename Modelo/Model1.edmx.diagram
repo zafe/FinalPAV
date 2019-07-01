@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8b0678decd09463bbaf35428e9415f78" Name="Diagram1">
+        <EntityTypeShape EntityType="FinalpavdbModel.AdelantoSet" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalpavdbModel.AdministradorSet" Width="1.5" PointX="0.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalpavdbModel.CamionSet" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalpavdbModel.ConductorSet" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalpavdbModel.DistanciaSet" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalpavdbModel.FincaSet" Width="1.5" PointX="1.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalpavdbModel.IngenioSet" Width="1.5" PointX="1.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalpavdbModel.PagoSet" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalpavdbModel.UsuarioSet" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalpavdbModel.ViajeSet" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="FinalpavdbModel.FK_AdelantoConductor" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalpavdbModel.FK_AdministradorAdelanto" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalpavdbModel.FK_AdministradorPago" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalpavdbModel.FK_UsuarioAdministrador" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalpavdbModel.FK_CamionViaje" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalpavdbModel.FK_PagoConductor" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalpavdbModel.FK_ViajeConductor" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalpavdbModel.FK_DistanciaViaje" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalpavdbModel.FK_FincaDistancia" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalpavdbModel.FK_IngenioDistancia" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
