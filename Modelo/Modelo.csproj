@@ -57,6 +57,7 @@
     <Compile Include="AdministradorSet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="CamionService.cs" />
     <Compile Include="CamionSet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
