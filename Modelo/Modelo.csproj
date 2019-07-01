@@ -51,9 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractService.cs" />
+    <Compile Include="Adelanto.cs" />
     <Compile Include="AdelantoSet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Administrador.cs" />
     <Compile Include="AdministradorSet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -61,6 +63,7 @@
     <Compile Include="CamionSet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Conductor.cs" />
     <Compile Include="ConductorSet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -71,6 +74,7 @@
     <Compile Include="FincaSet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="IngenioService.cs" />
     <Compile Include="IngenioSet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
