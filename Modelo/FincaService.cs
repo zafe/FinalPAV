@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    class FincaService : AbstractService<FincaSet>
+    public class FincaService : AbstractService<FincaSet>
     {
         public override void addEntity(FincaSet entity)
         {

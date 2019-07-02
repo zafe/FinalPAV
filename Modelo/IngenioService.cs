@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    class IngenioService : AbstractService<IngenioSet>
+    public class IngenioService : AbstractService<IngenioSet>
     {
         public override void addEntity(IngenioSet entity)
         {

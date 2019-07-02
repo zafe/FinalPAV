@@ -55,7 +55,7 @@
     <Compile Include="AdelantoSet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Administrador.cs" />
+    <Compile Include="AdministradorService.cs" />
     <Compile Include="AdministradorSet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

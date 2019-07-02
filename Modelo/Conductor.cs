@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    class Conductor : AbstractService<ConductorSet>
+    public class Conductor : AbstractService<ConductorSet>
     {
         public override void addEntity(ConductorSet entity)
         {

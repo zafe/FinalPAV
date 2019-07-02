@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    class Adelanto : AbstractService<AdelantoSet>
+    public class Adelanto : AbstractService<AdelantoSet>
     {
         public override void addEntity(AdelantoSet entity)
         {

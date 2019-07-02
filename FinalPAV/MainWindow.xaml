@@ -5,14 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinalPAV"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Transporte Zafe App - Iniciar Sesión" Height="450" Width="800">
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" Width="792">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="88*"/>
+            <ColumnDefinition Width="28"/>
+            <ColumnDefinition Width="485*"/>
+            <ColumnDefinition Width="49"/>
+            <ColumnDefinition Width="142*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Left" Height="100" Margin="0,10,0,0" VerticalAlignment="Top" Width="792" Grid.ColumnSpan="5">
             <Label x:Name="label" Content="Usuario"/>
-            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap"/>
+            <TextBox x:Name="textBoxUsuario" Height="23" TextWrapping="Wrap"/>
             <Label x:Name="label1" Content="Contraseña"/>
-            <TextBox x:Name="textBox1" Height="23" TextWrapping="Wrap" TextChanged="TextBox1_TextChanged" AutomationProperties.HelpText="fsadfas"/>
+            <PasswordBox x:Name="passwordBox"/>
         </StackPanel>
+        <Label x:Name="labelError" Content="Label" HorizontalAlignment="Left" Margin="235.263,135,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.492,0.64" FontWeight="Bold" Foreground="#FFE60000" Visibility="Hidden" Grid.Column="2"/>
+        <Button x:Name="buttonIniciarSesion" Content="Iniciar Sesión" HorizontalAlignment="Left" Margin="112.263,202,0,0" VerticalAlignment="Top" Width="117" Grid.Column="2" Click="ButtonIniciarSesion_Click"/>
+        <Button x:Name="buttonSalir" Content="Salir" HorizontalAlignment="Left" Margin="291.263,202,0,0" VerticalAlignment="Top" Width="75" Click="ButtonSalir_Click" Grid.Column="2"/>
 
     </Grid>
 </Window>

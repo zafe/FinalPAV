@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    class ViajeService : AbstractService<ViajeSet>
+    public class ViajeService : AbstractService<ViajeSet>
     {
         public override void addEntity(ViajeSet entity)
         {
