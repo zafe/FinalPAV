@@ -65,8 +65,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Services\IDataService.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Messages\UpdateListMessage.cs" />
+    <Compile Include="Services\IPersonaDataService.cs" />
     <Compile Include="Services\PersonaDataService.cs" />
+    <Compile Include="Utility\CustomCommand.cs" />
+    <Compile Include="Utility\Messenger.cs" />
+    <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModel\ConductoresViewModel.cs" />
     <Compile Include="ViewModel\IConductoresViewModel.cs" />
     <Compile Include="View\ConductoresView.xaml.cs">
@@ -113,7 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converter\" />
-    <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

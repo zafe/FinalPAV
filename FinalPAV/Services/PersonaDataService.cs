@@ -8,7 +8,7 @@ using Model;
 
 namespace FinalPAV.Services
 {
-    class PersonaDataService : IDataService
+    class PersonaDataService : IPersonaDataService
     {
         IPersonaRepository repository;
 

@@ -8,7 +8,7 @@ using Model;
 
 namespace FinalPAV.Services
 {
-    interface IDataService
+    public interface IPersonaDataService
     {
 
         void DeletePersonas(Persona persona);

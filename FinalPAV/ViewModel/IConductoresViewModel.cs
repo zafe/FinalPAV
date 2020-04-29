@@ -10,7 +10,7 @@ using Model;
 
 namespace FinalPAV.ViewModel
 {
-    interface IConductoresViewModel
+    public interface IConductoresViewModel
     {
 
         ObservableCollection<Persona> Personas { get; set; }
