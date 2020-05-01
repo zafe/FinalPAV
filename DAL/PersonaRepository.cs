@@ -67,6 +67,21 @@ namespace DAL
                     Nombre = "Ivana",
                     Apellido = "Zafinovich"
                 },
+                new Persona(){
+                    CUIT = 4,
+                    Nombre = "Jose",
+                    Apellido = "Zafernandez"
+                },
+                new Persona(){
+                    CUIT = 5,
+                    Nombre = "Maria",
+                    Apellido = "Zafarova"
+                },
+                new Persona(){
+                    CUIT = 6,
+                    Nombre = "Alicia",
+                    Apellido = "Zafati"
+                },
 
 
             };

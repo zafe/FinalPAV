@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Model
+{
+    public class Distancia
+    {
+        public long DistanciaId
+        {
+            get;
+            set;
+        }
+
+        public float DistanciaKM 
+        {
+            get;
+            set;
+        }
+
+        public Ingenio Ingenio
+        {
+            get;
+            set;
+        }
+
+        public Finca Finca
+        {
+            get;
+            set;
+        }
+    }
+}
