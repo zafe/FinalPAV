@@ -33,6 +33,20 @@ namespace FinalPAV.ViewModel
             }
         }
 
+        private ObservableCollection<Viaje> viajes;
+        public ObservableCollection<Viaje> Viajes
+        {
+            get
+            {
+                return viajes;
+            }
+            set
+            {
+                viajes = value;
+                RaisePropertyChanged("Viajes");//TODO No se que hace esta linea bien
+            }
+        }
+
         public ICommand EditCommand { get; set; }
         public Persona SelectedPersona
         { 
