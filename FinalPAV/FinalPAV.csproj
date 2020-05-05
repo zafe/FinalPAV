@@ -68,6 +68,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\CUITConverter.cs" />
+    <Compile Include="Converter\MontoConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Messages\UpdateListMessage.cs" />
     <Compile Include="Services\IPersonaDataService.cs" />
@@ -118,9 +120,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converter\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{c2c8b6fb-7baa-468b-90cc-352dba9814df}</Project>

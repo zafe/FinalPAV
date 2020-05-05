@@ -68,7 +68,43 @@
             </Grid>
             <Label Content="Viajes sin liquidar" FontWeight="Bold" FontSize="18" />
             <ListView ItemsSource="{Binding Viajes}" SelectedItem="SelectedViaje">
-                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#CCCCCC" BorderThickness="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Content="Desde:" FontSize="14" Grid.Column="0" Grid.Row="0" />
+                                    <Label Content="{Binding SelectedViaje.Distancia.Finca}"  Grid.Column="1" Grid.Row="0" />
+                                    <Label Content="Hasta:" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2" />
+                                    <Label Content="{Binding SelectedViaje.Distancia.Ingenio}"  Grid.Column="3" Grid.Row="0"/>
+                                    <Label Content="Distancia:" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0" />
+                                    <Label Content="{Binding SelectedViaje.Distancia.DistanciaKM}"  Grid.Column="1" Grid.Row="1" />
+                                    <Label Content="Peso:" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2" />
+                                    <Label Content="{Binding SelectedViaje.Peso}" Grid.Column="3" Grid.Row="1" />
+                                </Grid>
+                                <StackPanel>
+                                    <Label Content="Monto"/>
+                                    <Label Content="{Binding SelectedViaje.Monto}"/>
+                                </StackPanel>
+                            </Grid>
+                            
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
 

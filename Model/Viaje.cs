@@ -11,5 +11,6 @@ namespace Model
         public Distancia Distancia { get; set; }
         public float Peso { get; set;}
         public ReglasNegocio Reglas { get; set; }
+        public float Monto { get; set; }
     }
 }
