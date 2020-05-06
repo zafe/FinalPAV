@@ -18,6 +18,7 @@ namespace FinalPAV.ViewModel
     {
         private Persona selectedPersona;
         private IPersonaDataService personaDataService;
+        private IViajeDataService viajesDataService;
 
         private ObservableCollection<Persona> personas;
         public ObservableCollection<Persona> Personas
@@ -48,6 +49,7 @@ namespace FinalPAV.ViewModel
         }
 
         public ICommand EditCommand { get; set; }
+        public ICommand ViewViajesCommand { get; set; }
         public Persona SelectedPersona
         { 
             get 
@@ -71,6 +73,17 @@ namespace FinalPAV.ViewModel
         private void LoadCommands()
         {
             EditCommand = new CustomCommand(EditPersona, CanEditPersona);
+            ViewViajesCommand = new CustomCommand(PopulateViajes, CanPopulateViajes);
+        }
+
+        private bool CanPopulateViajes(object obj)
+        {
+            return SelectedPersona != null ? true : false;
+        }
+
+        private void PopulateViajes(object obj)
+        {
+            throw new NotImplementedException();
         }
 
         private void EditPersona(object obj)

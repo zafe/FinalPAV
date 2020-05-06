@@ -73,7 +73,9 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Messages\UpdateListMessage.cs" />
     <Compile Include="Services\IPersonaDataService.cs" />
+    <Compile Include="Services\IViajeDataService.cs" />
     <Compile Include="Services\PersonaDataService.cs" />
+    <Compile Include="Services\ViajeDataService.cs" />
     <Compile Include="Utility\CustomCommand.cs" />
     <Compile Include="Utility\Messenger.cs" />
     <Compile Include="ViewModelLocator.cs" />

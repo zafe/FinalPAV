@@ -5,9 +5,9 @@ using Model;
 
 namespace DAL
 {
-    class ViajesRepository : IRepository<Viaje>
+    class ViajeRepository : IRepository<Viaje>
     {
-
+        private static List<Viaje> viajes;
 
         public void Add(Viaje entity)
         {
@@ -43,5 +43,7 @@ namespace DAL
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
