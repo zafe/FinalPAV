@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DAL;
 using FinalPAV.Extensions;
 using FinalPAV.Messages;
 using FinalPAV.Services;
@@ -19,6 +20,7 @@ namespace FinalPAV.ViewModel
         private Persona selectedPersona;
         private IPersonaDataService personaDataService;
         private IViajeDataService viajesDataService;
+        private static PAVContext context = new PAVContext();
 
         private ObservableCollection<Persona> personas;
         public ObservableCollection<Persona> Personas
@@ -101,7 +103,9 @@ namespace FinalPAV.ViewModel
 
         private void LoadData()
         {
-            Personas = personaDataService.GetAllPersonas().ToObservableCollection();
+            context.Database.EnsureCreated();
+            Personas = ListExtensions.ToObservableCollection(context.Personas.ToList());
+            //Personas = personaDataService.GetAllPersonas().ToObservableCollection();
         }
 
         public ConductoresViewModel(IPersonaDataService coffeeDataService)

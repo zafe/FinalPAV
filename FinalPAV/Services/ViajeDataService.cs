@@ -10,7 +10,7 @@ namespace FinalPAV.Services
     class ViajeDataService : IViajeDataService
     {
 
-        IViajeRepository repository;
+        //IViajeRepository repository;
         public void DeleteViaje(Viaje viaje)
         {
             throw new NotImplementedException();

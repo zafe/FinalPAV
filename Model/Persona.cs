@@ -6,25 +6,9 @@ namespace Model
 {
     public class Persona
     {
-
-        public long CUIT //PersonaId
-        {
-            get;
-            set;
-        }
-
-        public string Nombre
-        {
-            get;
-            set;
-        }
-
-        public string Apellido
-        {
-            get;
-            set;
-        }
-         
-
+        public int PersonaId { get; set; }
+        public long CUIT {get;set;}
+        public string Nombre{ get;set;}
+        public string Apellido{get;set;}
     }
 }

@@ -5,7 +5,7 @@
         xmlns:viewmodels="clr-namespace:FinalPAV.ViewModel"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"  x:Class="FinalPAV.View.ConductoresView"
         Title="Control de Conductores" Height="480" Width="650"
-        DataContext="{Binding ConductoresViewModel, Source={StaticResource conductoresViewModelLocator}}">
+        DataContext="{Binding Source={StaticResource conductoresViewModelLocator}, Path=ConductoresViewModel}">
 
     <Grid>
         <Grid.ColumnDefinitions>

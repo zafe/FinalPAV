@@ -6,17 +6,7 @@ namespace Model
 {
     public class Ingenio
     {
-        public long IngenioId
-        {
-            get;
-            set;
-        }
-
-        public string Nombre
-        {
-            get;
-            set;
-        }
-
+        public int IngenioId { get; set;}
+        public string Nombre{ get; set; }
     }
 }

@@ -6,8 +6,9 @@ namespace Model
 {
     public class Usuario
     {
-        public long UsuarioId {get;set;}
+        public int UsuarioId {get;set;}
         public Persona Persona { get; set; }
+        public int PersonaId { get; set; }
         public string NombreUsuario { get; set; }
         public string Clave { get; set; }
     }

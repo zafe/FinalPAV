@@ -6,9 +6,11 @@ namespace Model
 {
     public class Pago
     {
-        public long PagoId { get; set; }
+        public int PagoId { get; set; }
         public DateTime FechaPago { get; set; }
         public float Monto { get; set; }
+        public Persona Conductor { get; set; }
+        public int ConductorId { get; set; }
 
     }
 }
