@@ -12,9 +12,8 @@ namespace FinalPAV
     public class ViewModelLocator
     {
         // private static IDialogService dialogService = new DialogService();
-        private static IPersonaDataService personaDataService = new PersonaDataService(new PersonaRepository());
 
-        private static ConductoresViewModel conductoresViewModel = new ConductoresViewModel(personaDataService);
+        private static ConductoresViewModel conductoresViewModel = new ConductoresViewModel();
         //private static CoffeeDetailViewModel coffeeDetailViewModel = new CoffeeDetailViewModel(personaDataService, dialogService);
 
         /*public static CoffeeDetailViewModel CoffeeDetailViewModel

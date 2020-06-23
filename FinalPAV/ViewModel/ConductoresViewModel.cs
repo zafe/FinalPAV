@@ -18,8 +18,6 @@ namespace FinalPAV.ViewModel
     public class ConductoresViewModel : INotifyPropertyChanged, IConductoresViewModel
     {
         private Persona selectedPersona;
-        private IPersonaDataService personaDataService;
-        private IViajeDataService viajesDataService;
         private static PAVContext context = new PAVContext();
 
         private ObservableCollection<Persona> personas;
@@ -80,12 +78,16 @@ namespace FinalPAV.ViewModel
 
         private bool CanPopulateViajes(object obj)
         {
-            return SelectedPersona != null ? true : false;
+            return (context.Viajes
+                .Where(x => x.ConductorId == SelectedPersona.PersonaId).FirstOrDefault() != null);
+           // return SelectedPersona != null ? true : false;
         }
 
         private void PopulateViajes(object obj)
         {
-            throw new NotImplementedException();
+            Viajes = context.Viajes
+                .Where(x => x.ConductorId == SelectedPersona.PersonaId)
+                .ToObservableCollection();
         }
 
         private void EditPersona(object obj)
@@ -108,9 +110,8 @@ namespace FinalPAV.ViewModel
             //Personas = personaDataService.GetAllPersonas().ToObservableCollection();
         }
 
-        public ConductoresViewModel(IPersonaDataService coffeeDataService)
+        public ConductoresViewModel()
         {
-            this.personaDataService = coffeeDataService;
            // this.dialogService = dialogService;
 
             LoadCommands();
