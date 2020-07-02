@@ -5,19 +5,19 @@
         xmlns:viewmodels="clr-namespace:FinalPAV.ViewModel"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"  x:Class="FinalPAV.View.ConductoresView"
-        Title="Control de Conductores" Height="480" Width="900"
+        Title="Control de Conductores" Height="700" Width="1200" ResizeMode="CanMinimize"
         DataContext="{Binding Source={StaticResource conductoresViewModelLocator}, Path=ConductoresViewModel}">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel HorizontalAlignment="Left" Height="480" VerticalAlignment="Top" Width="300">
+        <StackPanel Background="Crimson"  Height="Auto" VerticalAlignment="Top" Width="Auto">
             <Label Content="Conductores" FontWeight="Bold" FontSize="18" />
             <ListView
                   ItemsSource="{Binding Personas}" 
-                  SelectedItem="{Binding SelectedPersona}" Height="439">
+                  SelectedItem="{Binding SelectedPersona}" Height="Auto">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding ViewViajesCommand}"></i:InvokeCommandAction>
@@ -37,6 +37,7 @@
                                     <RowDefinition Height="30"/>
                                     <RowDefinition Height="15"/>
                                 </Grid.RowDefinitions>
+                                <Image Grid.RowSpan="3" Margin="10" Source="/FinalPAV;component/Resources/user.ico" />
                                 <Label Content="{Binding Nombre}" FontSize="14" Grid.Column="1"  Grid.ColumnSpan="2" FontWeight="Bold"/>
                                 <StackPanel  Grid.Row="1" Orientation="Horizontal" Grid.Column="1">
                                     <Label Content="Apellido: "/>
@@ -50,7 +51,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <StackPanel Grid.Column="1" HorizontalAlignment="Center" Height="480" VerticalAlignment="Top" Width="600">
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" Height="480" VerticalAlignment="Top" Width="Auto">
             <Label Content="Datos Conductor" FontWeight="Bold" FontSize="18" />
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -77,17 +78,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="#CCCCCC" BorderThickness="1">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Width="500" Background="Azure">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="30"/>
@@ -102,11 +99,11 @@
                                     <Label Content="Peso:" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2" />
                                     <Label Content="{Binding Peso}" Grid.Column="3" Grid.Row="1" />
                                 </Grid>
-                                <StackPanel>
-                                    <Label Content="Monto"/>
-                                    <Label Content="{Binding Monto}"/>
+                                <StackPanel Background="Beige" >
+                                    <Label HorizontalContentAlignment="Center" Content="Monto"/>
+                                    <Label Style="Bold" Content="{Binding Monto}"/>
                                 </StackPanel>
-                            </Grid>
+                            </StackPanel>
                             
                         </Border>
                     </DataTemplate>
