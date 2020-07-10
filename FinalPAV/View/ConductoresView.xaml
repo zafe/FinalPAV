@@ -50,6 +50,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Content="Editar Conductor" Command="{Binding EditCommand}"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1" HorizontalAlignment="Center" Height="480" VerticalAlignment="Top" Width="Auto">
             <Label Content="Datos Conductor" FontWeight="Bold" FontSize="18" />
@@ -101,7 +102,7 @@
                                 </Grid>
                                 <StackPanel Background="Beige" >
                                     <Label HorizontalContentAlignment="Center" Content="Monto"/>
-                                    <Label Style="Bold" Content="{Binding Monto}"/>
+                                    <Label Content="{Binding Monto}"/>
                                 </StackPanel>
                             </StackPanel>
                             

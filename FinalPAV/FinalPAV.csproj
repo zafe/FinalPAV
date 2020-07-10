@@ -171,8 +171,13 @@
     <Compile Include="Utility\CustomCommand.cs" />
     <Compile Include="Utility\Messenger.cs" />
     <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="ViewModel\ConductorABMViewModel.cs" />
     <Compile Include="ViewModel\ConductoresViewModel.cs" />
+    <Compile Include="ViewModel\IConductorABM.cs" />
     <Compile Include="ViewModel\IConductoresViewModel.cs" />
+    <Compile Include="View\ABMConductor.xaml.cs">
+      <DependentUpon>ABMConductor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ConductoresView.xaml.cs">
       <DependentUpon>ConductoresView.xaml</DependentUpon>
     </Compile>
@@ -180,6 +185,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ABMConductor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ConductoresView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
