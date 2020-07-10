@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalPAV.Messages
 {
-    class UpdateListMessage
+    public class UpdateListMessage
     {
     }
 }

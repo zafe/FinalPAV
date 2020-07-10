@@ -15,6 +15,7 @@ namespace FinalPAV
 
         private static ConductoresViewModel conductoresViewModel = new ConductoresViewModel();
         //private static CoffeeDetailViewModel coffeeDetailViewModel = new CoffeeDetailViewModel(personaDataService, dialogService);
+        private static ConductorABMViewModel conductorABMViewModel = new ConductorABMViewModel();
 
         /*public static CoffeeDetailViewModel CoffeeDetailViewModel
         {
@@ -30,6 +31,16 @@ namespace FinalPAV
             {
                 return conductoresViewModel;
             }
+        }
+
+        public static ConductorABMViewModel ConductorABMViewModel
+        {
+
+            get
+            {
+                return conductorABMViewModel;
+            }
+
         }
     }
 }

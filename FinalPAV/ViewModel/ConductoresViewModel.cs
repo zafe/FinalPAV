@@ -117,7 +117,7 @@ namespace FinalPAV.ViewModel
             LoadCommands();
             LoadData();
 
-            //Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
+            Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
 
         }
 

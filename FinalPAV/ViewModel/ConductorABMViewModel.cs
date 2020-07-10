@@ -1,4 +1,5 @@
-﻿using FinalPAV.Utility;
+﻿using FinalPAV.Messages;
+using FinalPAV.Utility;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Windows.Input;
 
 namespace FinalPAV.ViewModel
 {
-    class ConductorABMViewModel : IConductoreABM
+    public class ConductorABMViewModel : IConductoreABM
     {
         public ICommand SaveCommand { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Persona SelectedPersona { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -37,7 +38,7 @@ namespace FinalPAV.ViewModel
 
         private void SaveConductor(object obj)
         {
-            throw new NotImplementedException();
+            Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
         }
     }
 }
