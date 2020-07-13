@@ -13,8 +13,24 @@ namespace FinalPAV.ViewModel
 {
     public class ConductorABMViewModel : IConductoreABM
     {
-        public ICommand SaveCommand { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Persona SelectedPersona { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ICommand SaveCommand 
+        {
+            get; 
+            set;  
+        }//TODO MODIFICAR 
+
+        private Persona selectedPersona;
+        public Persona SelectedPersona 
+        { 
+            get
+            {
+                return selectedPersona;
+            }
+            set
+            {
+                this.selectedPersona = value;
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -33,7 +49,7 @@ namespace FinalPAV.ViewModel
 
         private bool CanSaveConductor(object obj)
         {
-            throw new NotImplementedException();
+            return true;//modificar esto o refactorear clase CustomCommand
         }
 
         private void SaveConductor(object obj)

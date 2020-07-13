@@ -19,6 +19,7 @@ namespace FinalPAV.ViewModel
     {
         private Persona selectedPersona;
         private static PAVContext context = new PAVContext();
+        private DialogService dialogService;
 
         private ObservableCollection<Persona> personas;
         public ObservableCollection<Persona> Personas
@@ -93,7 +94,7 @@ namespace FinalPAV.ViewModel
         private void EditPersona(object obj)
         {
             Messenger.Default.Send<Persona>(selectedPersona);
-           //dialogService.ShowDetailDialog();
+            dialogService.ShowDialog();
         }
 
         private bool CanEditPersona(object obj)
@@ -112,8 +113,9 @@ namespace FinalPAV.ViewModel
 
         public ConductoresViewModel()
         {
-           // this.dialogService = dialogService;
+            // this.dialogService = dialogService;
 
+            dialogService = new DialogService();
             LoadCommands();
             LoadData();
 
@@ -123,8 +125,9 @@ namespace FinalPAV.ViewModel
 
         private void OnUpdateListMessageReceived(UpdateListMessage obj)
         {
+            context.SaveChanges();
             LoadData();
-            //dialogService.CloseDetailDialog();
+            dialogService.CloseDialog();
         }
        
 
