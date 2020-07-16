@@ -1,5 +1,7 @@
-﻿using FinalPAV.Messages;
+﻿using DAL;
+using FinalPAV.Messages;
 using FinalPAV.Utility;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -19,6 +21,7 @@ namespace FinalPAV.ViewModel
             set;  
         }//TODO MODIFICAR 
 
+        private DbContext context = new PAVContext();
         private Persona selectedPersona;
         public Persona SelectedPersona 
         { 
@@ -54,6 +57,8 @@ namespace FinalPAV.ViewModel
 
         private void SaveConductor(object obj)
         {
+            if(selectedPersona.PersonaId == 0) context.Add(selectedPersona);
+            context.SaveChanges();
             Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
         }
     }

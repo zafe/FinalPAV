@@ -176,6 +176,8 @@
     <Compile Include="ViewModel\ConductoresViewModel.cs" />
     <Compile Include="ViewModel\IConductorABM.cs" />
     <Compile Include="ViewModel\IConductoresViewModel.cs" />
+    <Compile Include="ViewModel\IViajeABM.cs" />
+    <Compile Include="ViewModel\ViajeABMViewModel.cs" />
     <Compile Include="View\ABMConductor.xaml.cs">
       <DependentUpon>ABMConductor.xaml</DependentUpon>
     </Compile>
@@ -186,11 +188,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\ViajeABM.xaml.cs">
+      <DependentUpon>ViajeABM.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\ABMConductor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ConductoresView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViajeABM.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

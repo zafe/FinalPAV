@@ -13,9 +13,11 @@
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <ScrollViewer>
         <StackPanel Background="Crimson"  Height="Auto" VerticalAlignment="Top" Width="Auto">
             <Label Content="Conductores" FontWeight="Bold" FontSize="18" />
             <ListView
+                  VerticalContentAlignment="Top"
                   ItemsSource="{Binding Personas}" 
                   SelectedItem="{Binding SelectedPersona}" Height="Auto">
                 <i:Interaction.Triggers>
@@ -50,8 +52,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            
             <Button Content="Editar Conductor" Command="{Binding EditCommand}"></Button>
+            <Button Content="Agregar Conductor" Command="{Binding AddCommand}"></Button>
         </StackPanel>
+        </ScrollViewer>
         <StackPanel Grid.Column="1" HorizontalAlignment="Center" Height="480" VerticalAlignment="Top" Width="Auto">
             <Label Content="Datos Conductor" FontWeight="Bold" FontSize="18" />
             <Grid>
@@ -75,7 +80,7 @@
                 <Label Grid.Column="3" Grid.Row="1" Content="xxxxxx"></Label>
             </Grid>
             <Label Content="Viajes sin liquidar" FontWeight="Bold" FontSize="18" />
-            <ListView ItemsSource="{Binding Viajes}" SelectedItem="SelectedViaje">
+            <ListView ItemsSource="{Binding Viajes}" SelectedItem="{Binding SelectedViaje}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="#CCCCCC" BorderThickness="1">
@@ -92,9 +97,9 @@
                                         <RowDefinition Height="30"/>
                                     </Grid.RowDefinitions>
                                     <Label Content="Desde:" Grid.Column="0" Grid.Row="0" />
-                                    <Label Content="{Binding Distancia.Finca}" Grid.Column="1" Grid.Row="0" />
+                                    <Label Content="{Binding Distancia.Finca.Nombre}" Grid.Column="1" Grid.Row="0" />
                                     <Label Content="Hasta:" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2" />
-                                    <Label Content="{Binding Distancia.Ingenio}"  Grid.Column="3" Grid.Row="0"/>
+                                    <Label Content="{Binding Distancia.Ingenio.Nombre}"  Grid.Column="3" Grid.Row="0"/>
                                     <Label Content="Distancia:" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0" />
                                     <Label Content="{Binding Distancia.DistanciaKM}"  Grid.Column="1" Grid.Row="1" />
                                     <Label Content="Peso:" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2" />
@@ -110,6 +115,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Content="Agregar Viaje" />
+            <Button Content="Editar Viaje" Command="{Binding EditViajeCommand}"/>
+            <Button Content="Eliminar Viaje"/>
         </StackPanel>
 
     </Grid>

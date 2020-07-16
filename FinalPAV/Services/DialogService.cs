@@ -11,17 +11,28 @@ namespace FinalPAV.Services
 {
     public class DialogService
     {
-        MetroWindow conductorABMView = null;
+        MetroWindow windowDialog = null;
 
-        public void ShowDialog()
+        public void ShowDialog(string window)
         {
-            conductorABMView = new ABMConductor();
-            conductorABMView.ShowDialog();
+            switch(window)
+            {
+                case "Personas":
+                    windowDialog = new ABMConductor();
+                    break;
+                case "Viajes":
+                    windowDialog = new ViajeABM();
+                    break;
+            }
+
+            windowDialog.ShowDialog();
+                
+            
         }
 
         public void CloseDialog()
         {
-            if (conductorABMView != null) conductorABMView.Close();
+            if (windowDialog != null) windowDialog.Close();
         }
 
     }

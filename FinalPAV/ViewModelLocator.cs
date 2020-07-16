@@ -14,16 +14,16 @@ namespace FinalPAV
         // private static IDialogService dialogService = new DialogService();
 
         private static ConductoresViewModel conductoresViewModel = new ConductoresViewModel();
-        //private static CoffeeDetailViewModel coffeeDetailViewModel = new CoffeeDetailViewModel(personaDataService, dialogService);
+        private static ViajeABMViewModel viajesViewModel = new ViajeABMViewModel();
         private static ConductorABMViewModel conductorABMViewModel = new ConductorABMViewModel();
 
-        /*public static CoffeeDetailViewModel CoffeeDetailViewModel
+        public static ViajeABMViewModel ViajesViewModel
         {
             get
             {
-                return coffeeDetailViewModel;
+                return viajesViewModel;
             }
-        }*/
+        }
 
         public static ConductoresViewModel ConductoresViewModel
         {

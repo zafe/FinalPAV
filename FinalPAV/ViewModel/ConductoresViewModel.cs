@@ -18,6 +18,7 @@ namespace FinalPAV.ViewModel
     public class ConductoresViewModel : INotifyPropertyChanged, IConductoresViewModel
     {
         private Persona selectedPersona;
+        private Viaje selectedViaje;
         private static PAVContext context = new PAVContext();
         private DialogService dialogService;
 
@@ -50,7 +51,11 @@ namespace FinalPAV.ViewModel
         }
 
         public ICommand EditCommand { get; set; }
+        public ICommand AddCommand { get; set; }
         public ICommand ViewViajesCommand { get; set; }
+        public ICommand AddViajeCommand { get; set; }
+        public ICommand EditViajeCommand { get; set; }
+        
         public Persona SelectedPersona
         { 
             get 
@@ -63,7 +68,21 @@ namespace FinalPAV.ViewModel
                 RaisePropertyChanged("SelectedPersona");
             }
                 
-                }
+        }
+
+        public Viaje SelectedViaje
+        {
+            get
+            {
+                return selectedViaje;
+            }
+
+            set
+            {
+                this.selectedViaje = value;
+                RaisePropertyChanged("SelectedViaje");
+            }
+        }
 
         private void RaisePropertyChanged(string propertyName)
         {
@@ -74,11 +93,38 @@ namespace FinalPAV.ViewModel
         private void LoadCommands()
         {
             EditCommand = new CustomCommand(EditPersona, CanEditPersona);
+            AddCommand = new CustomCommand(AddPersona, CanAddPersona);
             ViewViajesCommand = new CustomCommand(PopulateViajes, CanPopulateViajes);
+            //AddViajesCommand = new CustomCommand(AddViaje, CanAddViaje);
+            EditViajeCommand = new CustomCommand(EditViaje, CanEditViaje);
+        }
+
+        private bool CanEditViaje(object obj)
+        {
+            return SelectedViaje != null;
+        }
+
+        private void EditViaje(object obj)
+        {
+            Messenger.Default.Send<Viaje>(SelectedViaje);
+            dialogService.ShowDialog("Viajes");
+        }
+
+        private bool CanAddPersona(object obj)
+        {
+            return true; //TODO Agregar logica para que solo el superusuario pueda agregar persona
+        }
+
+        private void AddPersona(object obj)
+        {
+            selectedPersona = new Persona();
+            Messenger.Default.Send<Persona>(selectedPersona);
+            dialogService.ShowDialog("Personas");
         }
 
         private bool CanPopulateViajes(object obj)
         {
+            Viajes = null;
             return (context.Viajes
                 .Where(x => x.ConductorId == SelectedPersona.PersonaId).FirstOrDefault() != null);
            // return SelectedPersona != null ? true : false;
@@ -89,12 +135,13 @@ namespace FinalPAV.ViewModel
             Viajes = context.Viajes
                 .Where(x => x.ConductorId == SelectedPersona.PersonaId)
                 .ToObservableCollection();
+            Console.WriteLine("hola");
         }
 
         private void EditPersona(object obj)
         {
             Messenger.Default.Send<Persona>(selectedPersona);
-            dialogService.ShowDialog();
+            dialogService.ShowDialog("Personas");
         }
 
         private bool CanEditPersona(object obj)
@@ -125,7 +172,6 @@ namespace FinalPAV.ViewModel
 
         private void OnUpdateListMessageReceived(UpdateListMessage obj)
         {
-            context.SaveChanges();
             LoadData();
             dialogService.CloseDialog();
         }

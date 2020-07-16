@@ -1,0 +1,56 @@
+﻿<mah:MetroWindow  
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="FinalPAV.View.ViajeABM"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalPAV.View"
+        mc:Ignorable="d"
+        Title="ViajeABM" Height="450" Width="500"
+        DataContext="{Binding Source={StaticResource conductoresViewModelLocator}, Path=ViajesViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.ColumnSpan="2" Content="{Binding Viaje.Conductor.Nombre}"/>
+        
+        
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Label Content="Origen" HorizontalAlignment="Center" Margin="3"/>
+            <ListView></ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Destino" HorizontalAlignment="Center" Margin="3"/>
+            <ListView></ListView>
+        </StackPanel>
+
+        <Label HorizontalAlignment="Center" Grid.Row="2"  Content="Distancia" Grid.ColumnSpan="2"/>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Label Content="Peso"/>
+            <TextBox Text="{Binding Viaje.Peso}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Label Content="Fecha"/>
+            <DatePicker/>
+        </StackPanel>
+
+        <Label HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="5" Content="{Binding Viaje.Monto}"/>
+
+        <Button Grid.Row="6" Content="Guardar"/>
+
+    </Grid>
+</mah:MetroWindow>
