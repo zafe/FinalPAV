@@ -6,7 +6,7 @@ namespace Model
 {
     public class Distancia
     {
-        public int DistanciaId { get;set; }
+        public long DistanciaId { get;set; }
         public float DistanciaKM { get;set;}
         public Ingenio Ingenio { get; set; }
         public long IngenioId { get; set; }

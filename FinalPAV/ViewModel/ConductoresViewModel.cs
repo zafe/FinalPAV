@@ -11,6 +11,7 @@ using FinalPAV.Extensions;
 using FinalPAV.Messages;
 using FinalPAV.Services;
 using FinalPAV.Utility;
+using Microsoft.EntityFrameworkCore;
 using Model;
 
 namespace FinalPAV.ViewModel
@@ -106,7 +107,9 @@ namespace FinalPAV.ViewModel
 
         private void EditViaje(object obj)
         {
+            //SelectedViaje.Distancia = context.Distancia.Where(x => x.DistanciaId == SelectedViaje.DistanciaId).FirstOrDefault();
             Messenger.Default.Send<Viaje>(SelectedViaje);
+            Messenger.Default.Send<PAVContext>(context);
             dialogService.ShowDialog("Viajes");
         }
 
@@ -132,10 +135,17 @@ namespace FinalPAV.ViewModel
 
         private void PopulateViajes(object obj)
         {
+            UpdateViajesList();
+        }
+
+        private void UpdateViajesList() 
+        {
             Viajes = context.Viajes
-                .Where(x => x.ConductorId == SelectedPersona.PersonaId)
-                .ToObservableCollection();
-            Console.WriteLine("hola");
+                   .Where(x => x.ConductorId == SelectedPersona.PersonaId)
+                   .Include(x => x.Distancia.Ingenio)
+                   .Include(x => x.Distancia.Finca)
+                   .Include(x => x.Reglas)
+                   .ToObservableCollection();
         }
 
         private void EditPersona(object obj)
@@ -167,7 +177,14 @@ namespace FinalPAV.ViewModel
             LoadData();
 
             Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
+            Messenger.Default.Register<UpdateListMessage>(this, OnUpdateViajesListReceived);
 
+        }
+
+        private void OnUpdateViajesListReceived(UpdateListMessage obj)
+        {
+            UpdateViajesList();
+            dialogService.CloseDialog();
         }
 
         private void OnUpdateListMessageReceived(UpdateListMessage obj)

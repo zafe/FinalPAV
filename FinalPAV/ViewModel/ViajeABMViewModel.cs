@@ -1,4 +1,6 @@
 ﻿using DAL;
+using FinalPAV.Extensions;
+using FinalPAV.Messages;
 using FinalPAV.Utility;
 using Microsoft.EntityFrameworkCore;
 using Model;
@@ -13,14 +15,46 @@ using System.Windows.Input;
 
 namespace FinalPAV.ViewModel
 {
-    public class ViajeABMViewModel : IViajeABM
+    public class ViajeABMViewModel : INotifyPropertyChanged, IViajeABM
     {
         public ICommand SaveCommand { get ; set; }
-        DbContext context = new PAVContext();
+
+        private static PAVContext context = new PAVContext();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private Ingenio selectedIngenio;
+        public Ingenio SelectedIngenio
+        {
+            get
+            {
+                return selectedIngenio;
+            }
+            set
+            {
+                this.selectedIngenio = value;
+                RaisePropertyChanged("SelectedIngenio");
+            }
+        }
+
+        private Finca selectedFinca;
+        public Finca SelectedFinca
+        {
+            get
+            {
+                return selectedFinca;
+            }
+            set
+            {
+                this.selectedFinca = value;
+                RaisePropertyChanged("SelectedFinca");
+            }
+        }
+
         private ObservableCollection<Ingenio> ingenios;
+
+        public ICommand UpdateDistanciaCommand { get; set; }
+        public ICommand SaveViajeCommand { get; set; }
         public ObservableCollection<Ingenio> Ingenios
         {
             get
@@ -29,7 +63,7 @@ namespace FinalPAV.ViewModel
             }
             set
             {
-                ingenios = value;
+                this.ingenios = value;
                 RaisePropertyChanged("Ingenios");
             }
         }
@@ -43,7 +77,7 @@ namespace FinalPAV.ViewModel
             }
             set
             {
-                fincas = value;
+                this.fincas = value;
                 RaisePropertyChanged("Fincas");
             }
         }
@@ -56,18 +90,71 @@ namespace FinalPAV.ViewModel
 
         private Viaje viaje;
         public Viaje Viaje {
-            get { return viaje; }
-            set { viaje = value; } 
+            get 
+            { 
+                return viaje; 
+            }
+            set 
+            {
+                this.viaje = value;
+                RaisePropertyChanged("Viaje");
+            }
         }
 
         public ViajeABMViewModel()
         {
+            UpdateDistanciaCommand = new CustomCommand(UpdateDistancia, CanUpdateDistancia);
+            SaveViajeCommand = new CustomCommand(SaveViaje, CanSaveViaje);
+
             Messenger.Default.Register<Viaje>(this, OnViajeReceived);
+            Messenger.Default.Register<PAVContext>(this, OnContextReceived);
+            LoadData();
+        }
+
+        private bool CanSaveViaje(object obj)
+        {
+            return true;//TODO Realizar logica para guardar el viaje
+        }
+
+        private void SaveViaje(object obj)
+        {
+            if (Viaje.ViajeId == 0) context.Add(Viaje);
+            context.SaveChanges();
+            Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
+        }
+
+        private bool CanUpdateDistancia(object obj)
+        {
+            return (SelectedIngenio != null) && (SelectedFinca != null);
+        }
+
+        private void UpdateDistancia(object obj)
+        {
+
+          Viaje.Distancia = ListExtensions.ToObservableCollection(context.Distancia
+                .Where(x => x.IngenioId == SelectedIngenio.IngenioId && x.FincaId == SelectedFinca.FincaId)).FirstOrDefault();
+          RaisePropertyChanged("Viaje");
+          Console.WriteLine("Distancia: " + Viaje.Distancia.DistanciaKM);
+        }
+
+        private void OnContextReceived(PAVContext contextReceived)
+        {
+            context = contextReceived;
         }
 
         private void OnViajeReceived(Viaje viajeReceived)
         {
             Viaje = viajeReceived;
+            //Distancia = viajeReceived.Distancia.DistanciaKM;
+            RaisePropertyChanged("Viaje");
+        }
+
+        private void LoadData()
+        {
+            context.Database.EnsureCreated();
+            Fincas = ListExtensions.ToObservableCollection(context.Finca.ToList());
+           // SelectedFinca = Fincas.FirstOrDefault(x => x.FincaId == Viaje.Distancia.FincaId);
+            Ingenios = ListExtensions.ToObservableCollection(context.Ingenio.ToList());
         }
     }
 }
