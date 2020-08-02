@@ -53,8 +53,9 @@ namespace FinalPAV.ViewModel
 
         public ICommand EditCommand { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand AddViajesCommand { get; set; }
+
         public ICommand ViewViajesCommand { get; set; }
-        public ICommand AddViajeCommand { get; set; }
         public ICommand EditViajeCommand { get; set; }
         
         public Persona SelectedPersona
@@ -96,8 +97,23 @@ namespace FinalPAV.ViewModel
             EditCommand = new CustomCommand(EditPersona, CanEditPersona);
             AddCommand = new CustomCommand(AddPersona, CanAddPersona);
             ViewViajesCommand = new CustomCommand(PopulateViajes, CanPopulateViajes);
-            //AddViajesCommand = new CustomCommand(AddViaje, CanAddViaje);
+            AddViajesCommand = new CustomCommand(AddViaje, CanAddViaje);
             EditViajeCommand = new CustomCommand(EditViaje, CanEditViaje);
+        }
+
+        private bool CanAddViaje(object obj)
+        {
+            return true;
+        }
+
+        private void AddViaje(object obj)
+        {
+            selectedViaje = new Viaje();
+            selectedViaje.Conductor = selectedPersona;
+            //selectedViaje.ConductorId = selectedPersona.PersonaId;
+           // selectedViaje.Reglas = context.ReglasNegocios.Where(x=>x.ReglasNegocioId == 1).FirstOrDefault();
+            Messenger.Default.Send<Viaje>(SelectedViaje);
+            dialogService.ShowDialog("Viajes");
         }
 
         private bool CanEditViaje(object obj)
@@ -109,7 +125,6 @@ namespace FinalPAV.ViewModel
         {
             //SelectedViaje.Distancia = context.Distancia.Where(x => x.DistanciaId == SelectedViaje.DistanciaId).FirstOrDefault();
             Messenger.Default.Send<Viaje>(SelectedViaje);
-            Messenger.Default.Send<PAVContext>(context);
             dialogService.ShowDialog("Viajes");
         }
 
@@ -151,6 +166,7 @@ namespace FinalPAV.ViewModel
         private void EditPersona(object obj)
         {
             Messenger.Default.Send<Persona>(selectedPersona);
+            Messenger.Default.Send<PAVContext>(context);
             dialogService.ShowDialog("Personas");
         }
 
@@ -177,19 +193,13 @@ namespace FinalPAV.ViewModel
             LoadData();
 
             Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
-            Messenger.Default.Register<UpdateListMessage>(this, OnUpdateViajesListReceived);
 
-        }
-
-        private void OnUpdateViajesListReceived(UpdateListMessage obj)
-        {
-            UpdateViajesList();
-            dialogService.CloseDialog();
         }
 
         private void OnUpdateListMessageReceived(UpdateListMessage obj)
         {
             LoadData();
+            UpdateViajesList();
             dialogService.CloseDialog();
         }
        

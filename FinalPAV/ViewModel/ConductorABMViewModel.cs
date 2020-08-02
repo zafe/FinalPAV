@@ -15,13 +15,9 @@ namespace FinalPAV.ViewModel
 {
     public class ConductorABMViewModel : IConductoreABM
     {
-        public ICommand SaveCommand 
-        {
-            get; 
-            set;  
-        }//TODO MODIFICAR 
+        public ICommand SaveCommand { get; set; }//TODO MODIFICAR 
 
-        private DbContext context = new PAVContext();
+        private PAVContext context = new PAVContext();
         private Persona selectedPersona;
         public Persona SelectedPersona 
         { 
@@ -43,8 +39,9 @@ namespace FinalPAV.ViewModel
 
             Messenger.Default.Register<Persona>(this, OnPersonaReceived);
 
-            }
+            //Messenger.Default.Register<PAVContext>(this, onContextReceived);
 
+            }
         private void OnPersonaReceived(Persona personaReceived)
         {
             SelectedPersona = personaReceived;
@@ -57,7 +54,11 @@ namespace FinalPAV.ViewModel
 
         private void SaveConductor(object obj)
         {
-            if(selectedPersona.PersonaId == 0) context.Add(selectedPersona);
+            if (selectedPersona.PersonaId == 0)
+                context.Add(selectedPersona);
+            else
+                context.Update(selectedPersona);
+
             context.SaveChanges();
             Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
         }

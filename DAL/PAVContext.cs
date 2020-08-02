@@ -14,6 +14,7 @@ namespace DAL
         public DbSet<Finca> Finca { get; set; }
         public DbSet<Ingenio> Ingenio { get; set; }
         public DbSet<Distancia> Distancia { get; set; }
+        //public DbSet<ReglasNegocio> ReglasNegocios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

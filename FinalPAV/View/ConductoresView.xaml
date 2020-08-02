@@ -115,7 +115,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Content="Agregar Viaje" />
+            <Button Content="Agregar Viaje" Command="{Binding AddViajesCommand}" />
             <Button Content="Editar Viaje" Command="{Binding EditViajeCommand}"/>
             <Button Content="Eliminar Viaje"/>
         </StackPanel>

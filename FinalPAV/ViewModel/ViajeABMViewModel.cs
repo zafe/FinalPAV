@@ -105,9 +105,7 @@ namespace FinalPAV.ViewModel
         {
             UpdateDistanciaCommand = new CustomCommand(UpdateDistancia, CanUpdateDistancia);
             SaveViajeCommand = new CustomCommand(SaveViaje, CanSaveViaje);
-
             Messenger.Default.Register<Viaje>(this, OnViajeReceived);
-            Messenger.Default.Register<PAVContext>(this, OnContextReceived);
             LoadData();
         }
 
@@ -118,7 +116,12 @@ namespace FinalPAV.ViewModel
 
         private void SaveViaje(object obj)
         {
-            if (Viaje.ViajeId == 0) context.Add(Viaje);
+            if (Viaje.ViajeId == 0)
+                context.Add(Viaje);
+            else
+                context.Update(Viaje);
+
+            Console.WriteLine("ViajeID: " + Viaje.ViajeId);
             context.SaveChanges();
             Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
         }
@@ -133,13 +136,10 @@ namespace FinalPAV.ViewModel
 
           Viaje.Distancia = ListExtensions.ToObservableCollection(context.Distancia
                 .Where(x => x.IngenioId == SelectedIngenio.IngenioId && x.FincaId == SelectedFinca.FincaId)).FirstOrDefault();
+            
+          Viaje.Monto = ViajeUtils.CalcularMonto(Viaje.Reglas, Viaje.Distancia.DistanciaKM);
           RaisePropertyChanged("Viaje");
           Console.WriteLine("Distancia: " + Viaje.Distancia.DistanciaKM);
-        }
-
-        private void OnContextReceived(PAVContext contextReceived)
-        {
-            context = contextReceived;
         }
 
         private void OnViajeReceived(Viaje viajeReceived)
@@ -151,7 +151,6 @@ namespace FinalPAV.ViewModel
 
         private void LoadData()
         {
-            context.Database.EnsureCreated();
             Fincas = ListExtensions.ToObservableCollection(context.Finca.ToList());
            // SelectedFinca = Fincas.FirstOrDefault(x => x.FincaId == Viaje.Distancia.FincaId);
             Ingenios = ListExtensions.ToObservableCollection(context.Ingenio.ToList());
