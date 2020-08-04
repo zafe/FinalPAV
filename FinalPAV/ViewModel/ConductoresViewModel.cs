@@ -54,10 +54,11 @@ namespace FinalPAV.ViewModel
         public ICommand EditCommand { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand AddViajesCommand { get; set; }
-
         public ICommand ViewViajesCommand { get; set; }
         public ICommand EditViajeCommand { get; set; }
-        
+        public ICommand LiquidarViajesCommand { get; set; }
+
+
         public Persona SelectedPersona
         { 
             get 
@@ -99,6 +100,21 @@ namespace FinalPAV.ViewModel
             ViewViajesCommand = new CustomCommand(PopulateViajes, CanPopulateViajes);
             AddViajesCommand = new CustomCommand(AddViaje, CanAddViaje);
             EditViajeCommand = new CustomCommand(EditViaje, CanEditViaje);
+            LiquidarViajesCommand = new CustomCommand(LiquidarViajes, CanLiquidarViajes);
+        }
+
+        private bool CanLiquidarViajes(object obj)
+        {
+            return true;
+        }
+
+        private void LiquidarViajes(object obj)
+        {
+            ViajeUtils.LiquidarViajes(
+                context.Viajes
+                .Where(v => v.EstadoLiquidacion.Equals(false) 
+                && v.Conductor.PersonaId == SelectedPersona.PersonaId)
+                .ToList());
         }
 
         private bool CanAddViaje(object obj)
@@ -108,12 +124,16 @@ namespace FinalPAV.ViewModel
 
         private void AddViaje(object obj)
         {
-            selectedViaje = new Viaje();
-            selectedViaje.Conductor = selectedPersona;
-            //selectedViaje.ConductorId = selectedPersona.PersonaId;
-           // selectedViaje.Reglas = context.ReglasNegocios.Where(x=>x.ReglasNegocioId == 1).FirstOrDefault();
-            Messenger.Default.Send<Viaje>(SelectedViaje);
-            dialogService.ShowDialog("Viajes");
+            SelectedViaje = new Viaje {
+
+            Conductor = SelectedPersona,
+            Reglas = context.ReglasNegocio.OrderByDescending(x=>x.FechaActualizacion.Date).FirstOrDefault(),
+            EstadoLiquidacion = false
+
+        };
+
+           Messenger.Default.Send<Viaje>(SelectedViaje);
+           dialogService.ShowDialog("Viajes");
         }
 
         private bool CanEditViaje(object obj)
@@ -135,7 +155,14 @@ namespace FinalPAV.ViewModel
 
         private void AddPersona(object obj)
         {
-            selectedPersona = new Persona();
+
+            selectedPersona = new Persona {
+
+                FechaNacimiento = System.DateTime.Parse("1/12/1990"),
+                FechaIngreso = System.DateTime.Now    
+                
+            };
+
             Messenger.Default.Send<Persona>(selectedPersona);
             dialogService.ShowDialog("Personas");
         }

@@ -82,7 +82,7 @@
 
         <StackPanel Grid.Row="4" Orientation="Horizontal" Grid.ColumnSpan="2">
             <Label Content="Fecha"/>
-            <DatePicker/>
+            <DatePicker SelectedDate="{Binding Viaje.FechaHora}"/>
         </StackPanel>
 
         <Label HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="5" Content="{Binding Viaje.Monto}"/>

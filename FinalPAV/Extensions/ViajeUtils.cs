@@ -12,8 +12,22 @@ namespace FinalPAV.Extensions
 
         public static float CalcularMonto(ReglasNegocio reglas, float distancia){
 
-            return 500.0f;
+            return 500.0f;//TODO Cambiar logica
 
+        }
+
+        public static List<Viaje> LiquidarViajes(List<Viaje> ViajesSinLiquidar)
+        {
+            List<Viaje> ViajesLiquidados = new List<Viaje>();
+
+            foreach (Viaje v in ViajesSinLiquidar)
+            { 
+                
+                v.EstadoLiquidacion = true;
+                ViajesLiquidados.Add(v);
+            }
+
+            return ViajesLiquidados;
         }
     }
 }

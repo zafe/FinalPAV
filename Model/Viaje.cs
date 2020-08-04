@@ -15,5 +15,7 @@ namespace Model
         public ReglasNegocio Reglas { get; set; }
         public int ReglasNegocioId { get; set; }
         public float Monto { get; set; }
+        public DateTime FechaHora { get; set; }
+        public bool EstadoLiquidacion { get; set; }
     }
 }

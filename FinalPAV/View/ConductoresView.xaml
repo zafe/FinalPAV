@@ -117,7 +117,7 @@
             </ListView>
             <Button Content="Agregar Viaje" Command="{Binding AddViajesCommand}" />
             <Button Content="Editar Viaje" Command="{Binding EditViajeCommand}"/>
-            <Button Content="Eliminar Viaje"/>
+            <Button Content="Liquidar Viajes" Command="{Binding LiquidarViajesCommand}"/>
         </StackPanel>
 
     </Grid>

@@ -14,12 +14,12 @@ namespace DAL
         public DbSet<Finca> Finca { get; set; }
         public DbSet<Ingenio> Ingenio { get; set; }
         public DbSet<Distancia> Distancia { get; set; }
-        //public DbSet<ReglasNegocio> ReglasNegocios { get; set; }
+        public DbSet<ReglasNegocio> ReglasNegocio { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("" +
-                "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PAVData ");
+                "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PAVData3 ");
         }
 
     }

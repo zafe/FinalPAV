@@ -116,13 +116,13 @@ namespace FinalPAV.ViewModel
 
         private void SaveViaje(object obj)
         {
-            if (Viaje.ViajeId == 0)
-                context.Add(Viaje);
-            else
-                context.Update(Viaje);
+            if (Viaje.ViajeId == 0) context.Update(Viaje);
 
             Console.WriteLine("ViajeID: " + Viaje.ViajeId);
+            //context.Database.OpenConnection();
+            //context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Personas ON");
             context.SaveChanges();
+            //context.Database.CloseConnection();
             Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
         }
 

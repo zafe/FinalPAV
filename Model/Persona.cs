@@ -10,5 +10,9 @@ namespace Model
         public long CUIT {get;set;}
         public string Nombre{ get;set;}
         public string Apellido{get;set;}
+
+        public DateTime FechaNacimiento { get; set; }
+        public DateTime FechaIngreso { get; set; }
+        public DateTime FechaBaja { get; set; }
     }
 }
