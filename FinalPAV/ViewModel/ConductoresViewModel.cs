@@ -128,6 +128,7 @@ namespace FinalPAV.ViewModel
 
             Conductor = SelectedPersona,
             Reglas = context.ReglasNegocio.OrderByDescending(x=>x.FechaActualizacion.Date).FirstOrDefault(),
+            FechaHora = System.DateTime.Now,
             EstadoLiquidacion = false
 
         };
