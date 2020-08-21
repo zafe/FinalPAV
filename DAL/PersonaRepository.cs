@@ -30,11 +30,11 @@ namespace DAL
             return personas;
         }
 
-        public Persona GetPersonaById(int cuit)
+        public Persona GetPersonaById(int id)
         {
             if (personas == null)
                 LoadPersonas();
-            return personas.Where(c => c.CUIT == cuit).FirstOrDefault();
+            return personas.Where(c => c.PersonaId == id).FirstOrDefault();
         }
 
         public void DeletePersona(Persona persona)
@@ -53,32 +53,32 @@ namespace DAL
             personas = new List<Persona>()
             {
                 new Persona(){
-                    CUIT = 1,
+                    CUIT = "1",
                     Nombre = "Fernando",
                     Apellido = "Zafe"
                 },
                 new Persona(){
-                    CUIT = 2,
+                    CUIT = "2",
                     Nombre = "Alvaro",
                     Apellido = "Zafinsky"
                 },
                 new Persona(){
-                    CUIT = 3,
+                    CUIT = "3",
                     Nombre = "Ivana",
                     Apellido = "Zafinovich"
                 },
                 new Persona(){
-                    CUIT = 4,
+                    CUIT = "4",
                     Nombre = "Jose",
                     Apellido = "Zafernandez"
                 },
                 new Persona(){
-                    CUIT = 5,
+                    CUIT = "5",
                     Nombre = "Maria",
                     Apellido = "Zafarova"
                 },
                 new Persona(){
-                    CUIT = 6,
+                    CUIT = "6",
                     Nombre = "Alicia",
                     Apellido = "Zafati"
                 },

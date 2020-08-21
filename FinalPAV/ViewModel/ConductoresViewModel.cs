@@ -160,7 +160,8 @@ namespace FinalPAV.ViewModel
             selectedPersona = new Persona {
 
                 FechaNacimiento = System.DateTime.Parse("1/12/1990"),
-                FechaIngreso = System.DateTime.Now    
+                FechaIngreso = System.DateTime.Now,
+                CUIT = ""
                 
             };
 

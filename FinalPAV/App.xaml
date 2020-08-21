@@ -2,10 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:FinalPAV"
+             xmlns:converter="clr-namespace:FinalPAV.Converter"
              StartupUri="View/ConductoresView.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <local:ViewModelLocator x:Key="conductoresViewModelLocator"></local:ViewModelLocator>
+            <converter:MontoConverter x:Key="montoConverter"></converter:MontoConverter>
             <ResourceDictionary.MergedDictionaries>
                 <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />

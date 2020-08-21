@@ -22,6 +22,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Nuevo conductor" FontWeight="Bold" FontSize="18" />
@@ -38,7 +39,9 @@
         <Label Grid.Row="4" Grid.Column="0" Margin="0 0 10 0" HorizontalAlignment="Right" Content="Fecha de Nacimiento"/>
         <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding SelectedPersona.FechaNacimiento}"/>
 
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" Height="30">
+        <Label Grid.Row="5" Grid.ColumnSpan="2" TextBlock.Foreground="Red" Content="{Binding Path=ErrorMessage}"/>
+
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" Height="30">
             <Button Margin="5 0 5 0" Content="Guardar" Command="{Binding SaveCommand}"/>
             <Button Margin="5 0 5 0" Content="Cancelar"/>
         </StackPanel>

@@ -178,6 +178,7 @@
     <Compile Include="Converter\CUITConverter.cs" />
     <Compile Include="Converter\MontoConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\PersonaUtils.cs" />
     <Compile Include="Extensions\ViajeUtils.cs" />
     <Compile Include="Messages\UpdateListMessage.cs" />
     <Compile Include="Services\DialogService.cs" />
