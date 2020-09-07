@@ -177,6 +177,7 @@
     </ApplicationDefinition>
     <Compile Include="Converter\CUITConverter.cs" />
     <Compile Include="Converter\MontoConverter.cs" />
+    <Compile Include="Extensions\LiquidarViajesEventArgs.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\PersonaUtils.cs" />
     <Compile Include="Extensions\ViajeUtils.cs" />

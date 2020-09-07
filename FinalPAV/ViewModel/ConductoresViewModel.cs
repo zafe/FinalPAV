@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using DAL;
 using FinalPAV.Extensions;
@@ -22,6 +23,29 @@ namespace FinalPAV.ViewModel
         private Viaje selectedViaje;
         private static PAVContext context = new PAVContext();
         private DialogService dialogService;
+
+        private event EventHandler<LiquidarViajesEventArgs> LiquidarViajesOrden;
+
+        protected virtual void OnLiquidarViajes()
+        {
+            LiquidarViajesOrden = ViajeUtils.LiquidarViaje;
+
+            if(LiquidarViajesOrden != null)
+            {
+                //LiquidarViajesOrden = (o, e) => e.Viaje.EstadoLiquidacion = true;
+                EventHandler<LiquidarViajesEventArgs> del = LiquidarViajesOrden as EventHandler<LiquidarViajesEventArgs>;
+                foreach (Viaje v in Viajes)
+                {
+                    //LiquidarViajesOrden(this, new LiquidarViajesEventArgs(v));
+                    del(this, new LiquidarViajesEventArgs(v));
+                    v.Monto = 399;
+                    context.Update(v);
+                }
+
+                RaisePropertyChanged("Viajes");
+                context.SaveChanges();
+            }
+        } 
 
         private ObservableCollection<Persona> personas;
         public ObservableCollection<Persona> Personas
@@ -105,16 +129,14 @@ namespace FinalPAV.ViewModel
 
         private bool CanLiquidarViajes(object obj)
         {
+            
+
             return true;
         }
 
         private void LiquidarViajes(object obj)
         {
-            ViajeUtils.LiquidarViajes(
-                context.Viajes
-                .Where(v => v.EstadoLiquidacion.Equals(false) 
-                && v.Conductor.PersonaId == SelectedPersona.PersonaId)
-                .ToList());
+            OnLiquidarViajes();
         }
 
         private bool CanAddViaje(object obj)
@@ -171,9 +193,10 @@ namespace FinalPAV.ViewModel
 
         private bool CanPopulateViajes(object obj)
         {
+
             Viajes = null;
-            return (context.Viajes
-                .Where(x => x.ConductorId == SelectedPersona.PersonaId).FirstOrDefault() != null);
+                return (context.Viajes
+                    .Where(x => x.ConductorId == SelectedPersona.PersonaId).FirstOrDefault() != null);
            // return SelectedPersona != null ? true : false;
         }
 
@@ -209,7 +232,9 @@ namespace FinalPAV.ViewModel
         private void LoadData()
         {
             context.Database.EnsureCreated();
-            Personas = ListExtensions.ToObservableCollection(context.Personas.ToList());
+            Console.WriteLine("lISTA PERSONA ACTUALIZADAS");
+            Personas = context.Personas.ToList().ToObservableCollection();
+           // Personas = ListExtensions.ToObservableCollection(context.Personas.ToList());
             //Personas = personaDataService.GetAllPersonas().ToObservableCollection();
         }
 

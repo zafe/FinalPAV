@@ -24,5 +24,13 @@ namespace FinalPAV.View
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            tb_nombre.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            tb_apellido.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            tb_cuit.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            dp_nacimiento.GetBindingExpression(DatePicker.SelectedDateProperty).UpdateSource();
+        }
     }
 }

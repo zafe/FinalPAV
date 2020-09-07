@@ -9,11 +9,20 @@ namespace FinalPAV.Extensions
 {
     public static class ViajeUtils
     {
-
+        
         public static float CalcularMonto(ReglasNegocio reglas, float distancia){
 
             return 500.0f;//TODO Cambiar logica
 
+        }
+
+        public static void LiquidarViaje(object sender, LiquidarViajesEventArgs e)
+        {
+            e.Viaje.EstadoLiquidacion = true;
+            e.Viaje.Monto = 750;
+
+            Console.WriteLine("******** LIQUIDAR VIAJE EJECUTADO ********");
+            
         }
 
         public static List<Viaje> LiquidarViajes(List<Viaje> ViajesSinLiquidar)

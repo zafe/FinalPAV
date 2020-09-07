@@ -28,22 +28,22 @@
         <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Nuevo conductor" FontWeight="Bold" FontSize="18" />
         
         <Label Grid.Row="1" Grid.Column="0" Margin="0 0 10 0" HorizontalAlignment="Right" Content="Nombre"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedPersona.Nombre}"/>
+        <TextBox x:Name="tb_nombre" Grid.Row="1" Grid.Column="1" Text="{Binding SelectedPersona.Nombre, UpdateSourceTrigger=Explicit}"/>
 
         <Label Grid.Row="2" Grid.Column="0" Margin="0 0 10 0" HorizontalAlignment="Right" Content="Apellido"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedPersona.Apellido}"/>
+        <TextBox x:Name="tb_apellido" Grid.Row="2" Grid.Column="1" Text="{Binding SelectedPersona.Apellido}"/>
 
         <Label Grid.Row="3" Grid.Column="0" Margin="0 0 10 0" HorizontalAlignment="Right" Content="CUIT"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedPersona.CUIT}"/>
+        <TextBox x:Name="tb_cuit" Grid.Row="3" Grid.Column="1" Text="{Binding SelectedPersona.CUIT}"/>
 
         <Label Grid.Row="4" Grid.Column="0" Margin="0 0 10 0" HorizontalAlignment="Right" Content="Fecha de Nacimiento"/>
-        <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding SelectedPersona.FechaNacimiento}"/>
+        <DatePicker x:Name="dp_nacimiento" Grid.Row="4" Grid.Column="1" SelectedDate="{Binding SelectedPersona.FechaNacimiento}"/>
 
         <Label Grid.Row="5" Grid.ColumnSpan="2" TextBlock.Foreground="Red" Content="{Binding Path=ErrorMessage}"/>
 
         <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" Height="30">
-            <Button Margin="5 0 5 0" Content="Guardar" Command="{Binding SaveCommand}"/>
-            <Button Margin="5 0 5 0" Content="Cancelar"/>
+            <Button Margin="5 0 5 0" Content="Guardar" Command="{Binding SaveCommand}" Click="Button_Click"/>
+            <Button Margin="5 0 5 0" Content="Cancelar" Command="{Binding CancelCommand}"/>
         </StackPanel>
 
     </Grid>
