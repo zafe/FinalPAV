@@ -136,8 +136,8 @@ namespace FinalPAV.ViewModel
 
           Viaje.Distancia = ListExtensions.ToObservableCollection(context.Distancia
                 .Where(x => x.IngenioId == SelectedIngenio.IngenioId && x.FincaId == SelectedFinca.FincaId)).FirstOrDefault();
-            
-          Viaje.Monto = ViajeUtils.CalcularMonto(Viaje.Reglas, Viaje.Distancia.DistanciaKM);
+
+          ViajeUtils.CalcularMonto(Viaje);
           RaisePropertyChanged("Viaje");
           Console.WriteLine("Distancia: " + Viaje.Distancia.DistanciaKM);
         }

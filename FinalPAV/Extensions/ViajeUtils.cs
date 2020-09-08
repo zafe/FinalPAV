@@ -16,6 +16,17 @@ namespace FinalPAV.Extensions
 
         }
 
+        public static Viaje LiquidarViaje(Viaje v)
+        {
+            v.EstadoLiquidacion = true;
+            return v;
+        }
+
+        public static void CalcularMonto(Viaje v)
+        {
+            v.Monto = v.Peso * (v.Distancia.DistanciaKM * v.Reglas.PrecioKM + v.Reglas.Tarifa);
+        }
+
         public static void LiquidarViaje(object sender, LiquidarViajesEventArgs e)
         {
             e.Viaje.EstadoLiquidacion = true;

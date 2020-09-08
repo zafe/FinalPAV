@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace FinalPAV.ViewModel
         private static PAVContext context = new PAVContext();
         private DialogService dialogService;
 
-        private event EventHandler<LiquidarViajesEventArgs> LiquidarViajesOrden;
+        private event Func<Viaje, Viaje> LiquidarViajesOrden;
 
         protected virtual void OnLiquidarViajes()
         {
@@ -33,16 +34,17 @@ namespace FinalPAV.ViewModel
             if(LiquidarViajesOrden != null)
             {
                 //LiquidarViajesOrden = (o, e) => e.Viaje.EstadoLiquidacion = true;
-                EventHandler<LiquidarViajesEventArgs> del = LiquidarViajesOrden as EventHandler<LiquidarViajesEventArgs>;
-                foreach (Viaje v in Viajes)
+                Func<Viaje, Viaje> del = LiquidarViajesOrden;
+                
+
+                for (int i = 0; i < Viajes.Count; i++) 
                 {
-                    //LiquidarViajesOrden(this, new LiquidarViajesEventArgs(v));
-                    del(this, new LiquidarViajesEventArgs(v));
-                    v.Monto = 399;
-                    context.Update(v);
+                    Viajes[i] = del(Viajes.ElementAt(i));
                 }
 
-                RaisePropertyChanged("Viajes");
+                //TODO Por que no funciona RaiseProperty???
+
+                UpdateViajesList();
                 context.SaveChanges();
             }
         } 
@@ -205,10 +207,16 @@ namespace FinalPAV.ViewModel
             UpdateViajesList();
         }
 
+        private void PopulateViajes(object obj, NotifyCollectionChangedEventArgs e)
+        {
+            UpdateViajesList();
+        }
+
         private void UpdateViajesList() 
         {
             Viajes = context.Viajes
-                   .Where(x => x.ConductorId == SelectedPersona.PersonaId)
+                   .Where(x =>  x.ConductorId == SelectedPersona.PersonaId)
+                   .Where(x => x.EstadoLiquidacion == false)
                    .Include(x => x.Distancia.Ingenio)
                    .Include(x => x.Distancia.Finca)
                    .Include(x => x.Reglas)
@@ -241,7 +249,6 @@ namespace FinalPAV.ViewModel
         public ConductoresViewModel()
         {
             // this.dialogService = dialogService;
-
             dialogService = new DialogService();
             LoadCommands();
             LoadData();

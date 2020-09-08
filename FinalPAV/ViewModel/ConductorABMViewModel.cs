@@ -86,13 +86,15 @@ namespace FinalPAV.ViewModel
 
         private bool CanSaveConductor(object obj)
         {
-            bool flag = true;
+            return true;
+           /* bool flag = true;
 
-            if (SelectedPersona.Nombre.Length == 0
-                || SelectedPersona.Apellido.Length == 0
-                || SelectedPersona.CUIT.Length == 0) flag = false;
+            if (SelectedPersona?.Nombre.Length == 0
+                || SelectedPersona?.Apellido.Length == 0
+                || SelectedPersona?.CUIT.Length == 0) flag = false;
 
             return flag;
+            */
         }
 
         private bool CheckFillErrors()

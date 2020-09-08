@@ -10,6 +10,7 @@ namespace DAL
     {
 
         public DbSet<Persona> Personas { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Viaje> Viajes { get; set; }
         public DbSet<Finca> Finca { get; set; }
         public DbSet<Ingenio> Ingenio { get; set; }

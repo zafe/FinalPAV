@@ -77,7 +77,13 @@
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="2">
             <Label Content="Peso"/>
-            <TextBox Text="{Binding Viaje.Peso}"/>
+            <TextBox Text="{Binding Viaje.Peso}" >
+                <i:Interaction.Triggers>
+                <i:EventTrigger EventName="LostFocus">
+                    <i:InvokeCommandAction Command="{Binding UpdateDistanciaCommand}"></i:InvokeCommandAction>
+                </i:EventTrigger>
+                </i:Interaction.Triggers> 
+            </TextBox>
         </StackPanel>
 
         <StackPanel Grid.Row="4" Orientation="Horizontal" Grid.ColumnSpan="2">
