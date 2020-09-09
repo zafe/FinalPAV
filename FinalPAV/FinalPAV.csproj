@@ -210,10 +210,10 @@
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModel\ConductorABMViewModel.cs" />
     <Compile Include="ViewModel\ConductoresViewModel.cs" />
-    <Compile Include="ViewModel\IConductorABM.cs" />
-    <Compile Include="ViewModel\IConductoresViewModel.cs" />
-    <Compile Include="ViewModel\ILoginViewModel.cs" />
-    <Compile Include="ViewModel\IViajeABM.cs" />
+    <Compile Include="ViewModel\Interfaces\IConductorABM.cs" />
+    <Compile Include="ViewModel\Interfaces\IConductoresViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\ILoginViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IViajeABM.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ViajeABMViewModel.cs" />
     <Compile Include="View\ABMConductor.xaml.cs">

@@ -16,7 +16,7 @@ using System.Windows.Input;
 
 namespace FinalPAV.ViewModel
 {
-    public class ConductorABMViewModel : INotifyPropertyChanged, IConductoreABM
+    public class ConductorABMViewModel : INotifyPropertyChanged, IConductorABM
     {
         public ICommand SaveCommand { get; set; }//TODO MODIFICAR 
         public ICommand CancelCommand { get; set; }

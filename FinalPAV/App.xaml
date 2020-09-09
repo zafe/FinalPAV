@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:FinalPAV"
              xmlns:converter="clr-namespace:FinalPAV.Converter"
-             StartupUri="View/ConductoresView.xaml">
+             StartupUri="View/LoginWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <local:ViewModelLocator x:Key="conductoresViewModelLocator"></local:ViewModelLocator>

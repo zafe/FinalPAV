@@ -10,7 +10,7 @@ using Model;
 
 namespace FinalPAV.ViewModel
 {
-    public interface IConductoreABM
+    public interface IConductorABM
     {
 
         ICommand SaveCommand { get; set; }

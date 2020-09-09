@@ -248,17 +248,24 @@ namespace FinalPAV.ViewModel
 
         public ConductoresViewModel()
         {
-            // this.dialogService = dialogService;
+           
             dialogService = new DialogService();
             LoadCommands();
             LoadData();
-
+            ShowLogin();
             Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
 
         }
 
+        private void ShowLogin()
+        {
+            //dialogService.ShowDialog("Login");
+            Console.WriteLine("login ejecutado");
+        }
+
         private void OnUpdateListMessageReceived(UpdateListMessage obj)
         {
+
             LoadData();
             UpdateViajesList();
             dialogService.CloseDialog();

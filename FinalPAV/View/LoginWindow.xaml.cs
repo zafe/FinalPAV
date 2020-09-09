@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,21 @@ namespace FinalPAV.View
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginWindow : MetroWindow
     {
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        //private string Password { get; set; }
+
+        private void PasswordBox_Password(object sender, RoutedEventArgs e)
+        {
+            if(this.DataContext != null)
+            {
+                ((dynamic)this.DataContext).Clave = ((PasswordBox)sender).Password;
+            }
         }
     }
 }

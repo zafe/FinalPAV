@@ -16,6 +16,15 @@ namespace FinalPAV
         private static ConductoresViewModel conductoresViewModel = new ConductoresViewModel();
         private static ViajeABMViewModel viajesViewModel = new ViajeABMViewModel();
         private static ConductorABMViewModel conductorABMViewModel = new ConductorABMViewModel();
+        private static LoginViewModel loginViewModel = new LoginViewModel();
+
+        public static LoginViewModel LoginViewModel
+        {
+            get
+            {
+                return loginViewModel;
+            }
+        }
 
         public static ViajeABMViewModel ViajesViewModel
         {

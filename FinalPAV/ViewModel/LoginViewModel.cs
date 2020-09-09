@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace FinalPAV.ViewModel
 {
-    class LoginViewModel : ILoginViewModel, INotifyPropertyChanged
+    public class LoginViewModel : ILoginViewModel, INotifyPropertyChanged
     {
         public ICommand LoginCommand { get; set; }
 
@@ -40,8 +40,10 @@ namespace FinalPAV.ViewModel
             PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        LoginViewModel()
+        public LoginViewModel()
         {
+            Usuario = "";
+            Clave = "";
             LoadCommands();
         }
 
@@ -59,6 +61,7 @@ namespace FinalPAV.ViewModel
                 else
                     MessageBox.Show("Credenciales incorrectas");
 
+                Console.WriteLine("Iniciar Sesion presionado");
 
             }, CanExecuteLogin);
         }

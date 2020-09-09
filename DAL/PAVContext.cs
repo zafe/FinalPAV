@@ -20,7 +20,7 @@ namespace DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("" +
-                "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PAVData2 ");
+                "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PAVData4 ");
         }
 
     }

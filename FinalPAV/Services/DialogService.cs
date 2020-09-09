@@ -23,6 +23,9 @@ namespace FinalPAV.Services
                 case "Viajes":
                     windowDialog = new ViajeABM();
                     break;
+                case "Login":
+                    windowDialog = new LoginWindow();
+                    break;
             }
 
             windowDialog.ShowDialog();

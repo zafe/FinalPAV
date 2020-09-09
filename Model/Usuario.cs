@@ -11,5 +11,6 @@ namespace Model
         public int PersonaId { get; set; }
         public string NombreUsuario { get; set; }
         public string Clave { get; set; }
+        public bool Administrador { get; set; }
     }
 }
