@@ -254,7 +254,6 @@ namespace FinalPAV.ViewModel
             LoadData();
             ShowLogin();
             Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
-
         }
 
         private void ShowLogin()

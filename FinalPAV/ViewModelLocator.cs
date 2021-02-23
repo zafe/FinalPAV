@@ -18,7 +18,7 @@ namespace FinalPAV
         private static ConductorABMViewModel conductorABMViewModel = new ConductorABMViewModel();
         private static LoginViewModel loginViewModel = new LoginViewModel();
 
-        public static LoginViewModel LoginViewModel
+        public static LoginViewModel LoginViewModelo
         {
             get
             {

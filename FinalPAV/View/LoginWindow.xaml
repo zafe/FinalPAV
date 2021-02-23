@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:FinalPAV.View"
         mc:Ignorable="d"
         Title="LoginWindow" Height="450" Width="800"
-        DataContext="{Binding Source={StaticResource conductoresViewModelLocator}, Path=LoginViewModel}">
+        DataContext="{Binding Source={StaticResource conductoresViewModelLocator}, Path=LoginViewModelo}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
